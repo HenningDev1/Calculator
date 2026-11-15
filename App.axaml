@@ -1,0 +1,142 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Calculator.App"
+             RequestedThemeVariant="Dark">
+  <Application.Styles>
+    <FluentTheme />
+
+    <!-- Calculator keys: one look per key family, all colours come from the theme. -->
+    <Style Selector="Button.key">
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <Setter Property="VerticalAlignment" Value="Stretch" />
+      <Setter Property="HorizontalContentAlignment" Value="Center" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="Margin" Value="0" />
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="Focusable" Value="False" />
+      <Setter Property="FontWeight" Value="Normal" />
+      <Setter Property="Transitions">
+        <Transitions>
+          <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.08" />
+        </Transitions>
+      </Setter>
+    </Style>
+    <Style Selector="Button.key:pressed">
+      <Setter Property="RenderTransform" Value="scale(0.95)" />
+    </Style>
+
+    <Style Selector="Button.num /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource NumBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource NumTextBrush}" />
+    </Style>
+    <Style Selector="Button.num:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource NumHoverBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource NumTextBrush}" />
+    </Style>
+    <Style Selector="Button.num:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource NumPressBrush}" />
+    </Style>
+
+    <Style Selector="Button.fn /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource FnBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource FnTextBrush}" />
+    </Style>
+    <Style Selector="Button.fn:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource FnHoverBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource FnTextBrush}" />
+    </Style>
+    <Style Selector="Button.fn:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource FnPressBrush}" />
+    </Style>
+
+    <Style Selector="Button.top /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource TopBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource TopTextBrush}" />
+    </Style>
+    <Style Selector="Button.top:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource TopHoverBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource TopTextBrush}" />
+    </Style>
+    <Style Selector="Button.top:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource TopPressBrush}" />
+    </Style>
+
+    <Style Selector="Button.op /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource OpBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource OpTextBrush}" />
+    </Style>
+    <Style Selector="Button.op:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource OpHoverBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource OpTextBrush}" />
+    </Style>
+    <Style Selector="Button.op:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource OpPressBrush}" />
+    </Style>
+    <Style Selector="Button.op.active /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource OpTextBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource OpBrush}" />
+    </Style>
+
+    <!-- Small icon buttons in the title bar. -->
+    <Style Selector="Button.chrome">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Foreground" Value="{DynamicResource SubtleTextBrush}" />
+      <Setter Property="Padding" Value="8,4" />
+      <Setter Property="CornerRadius" Value="8" />
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="Focusable" Value="False" />
+    </Style>
+    <Style Selector="Button.chrome:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource FnBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource DisplayTextBrush}" />
+    </Style>
+    <Style Selector="Button.chrome.on /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Foreground" Value="{DynamicResource AccentBrush}" />
+    </Style>
+
+    <!-- Settings panel (same look as the Notes app) -->
+    <Style Selector="TextBox.field, ComboBox.field">
+      <Setter Property="Background" Value="{DynamicResource FieldBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="CornerRadius" Value="8" />
+      <Setter Property="MinHeight" Value="30" />
+      <Setter Property="FontSize" Value="13" />
+    </Style>
+    <Style Selector="TextBox.field:focus /template/ Border#PART_BorderElement">
+      <Setter Property="BorderThickness" Value="1.5" />
+      <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+      <Setter Property="Background" Value="{DynamicResource FieldBrush}" />
+    </Style>
+    <Style Selector="TextBox.field:pointerover /template/ Border#PART_BorderElement">
+      <Setter Property="Background" Value="{DynamicResource FieldBrush}" />
+    </Style>
+    <Style Selector="Button.pill">
+      <Setter Property="Background" Value="{DynamicResource FieldBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+      <Setter Property="CornerRadius" Value="9" />
+      <Setter Property="Padding" Value="12,6" />
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="Cursor" Value="Hand" />
+    </Style>
+    <Style Selector="Button.pill:pointerover /template/ ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource HoverBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+    </Style>
+    <Style Selector="Button.primary">
+      <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource OnAccentBrush}" />
+    </Style>
+    <Style Selector="Button.primary:pointerover /template/ ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource OnAccentBrush}" />
+    </Style>
+    <Style Selector="TextBlock.h">
+      <Setter Property="FontSize" Value="11" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="Foreground" Value="{DynamicResource SubtleBrush}" />
+      <Setter Property="Margin" Value="0,18,0,6" />
+    </Style>
+  </Application.Styles>
+</Application>
